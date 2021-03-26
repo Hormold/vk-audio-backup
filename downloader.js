@@ -61,9 +61,11 @@ class Downloader {
             url = url.replace(m[1], '');
             url = url.replace(m[4], '.mp3');
         }
-        const fn = `${item.artist} - ${item.title}.mp3`;
+        coreName = `${item.artist} - ${item.title}`
+        let coreName = coreName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        const fn = `${coreName}.mp3`;
         const fpath = path.join(__dirname, 'content','audio', fn);
-        const fn2 = `${item.artist} - ${item.title}.json`;
+        const fn2 = `${coreName}.json`;
         const path2 = path.join(__dirname, 'content','audio_meta', fn2);
         if(!fs.existsSync(fpath)) {
             await this.downloadFile(fpath, url);
