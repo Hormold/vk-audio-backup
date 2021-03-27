@@ -61,8 +61,8 @@ class Downloader {
             url = url.replace(m[1], '');
             url = url.replace(m[4], '.mp3');
         }
-        coreName = `${item.artist} - ${item.title}`
-        let coreName = coreName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        let coreName = `${item.artist} - ${item.title}`
+        coreName = coreName.replace(/\/|'|:|"|\?|!/g, '_');
         const fn = `${coreName}.mp3`;
         const fpath = path.join(__dirname, 'content','audio', fn);
         const fn2 = `${coreName}.json`;
